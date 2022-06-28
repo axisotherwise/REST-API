@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+<button class="get">getUsers</button>
+<button class="post">postUser</button>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const $get = document.querySelector(".get");
+  const $post = document.querySelector(".post");
+
+  async function getUsers() {
+    try {
+      const users = await axios.get("http://localhost:1000/user");
+      console.log(users);
+    } catch (err) {
+      console.log("error");
+      console.log(err);
+    }
+  }
+  async function postUser() {
+    try {
+      const user = await axios.post("http://localhost:1000/user", {
+        email: "이메일",
+        password: "패스워드",
+      });
+      console.log(user.data);
+    } catch (err) {
+      console.log("error");
+      console.log(err);
+    }
+  }
+
+  $get.addEventListener("click", getUsers);
+  $post.addEventListener("click", postUser);
+</script>
+</body>
+</html>
